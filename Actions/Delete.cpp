@@ -58,6 +58,7 @@ void Delete::Execute()
 				}
 			}
 		}
+		pUI->ClearStatusBar();
 	}
 }
 void Delete::Undo()
