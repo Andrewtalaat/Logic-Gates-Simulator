@@ -2,7 +2,7 @@
 #define SIMULATE_H
 
 #include "SELECT.h"
-
+class Component;
 class Simulate : public SELECT
 {
 public:
