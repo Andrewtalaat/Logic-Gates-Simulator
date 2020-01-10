@@ -2,7 +2,7 @@
 #define SwitchMode_H
 
 #include"Action.h"
-
+class Component;
 
 class SwitchMode : public Action
 {
@@ -12,9 +12,9 @@ public:
 
 	//Execute action (code depends on action type)
 	virtual void Execute();
-
 	virtual void Undo();
 	virtual void Redo();
+	bool CircuitConnected();
 
 
 };

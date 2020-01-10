@@ -4,21 +4,12 @@ SWITCH::SWITCH(GraphicsInfo* r_pGfxInfo, int r_FanOut) :Gate(r_pGfxInfo, 1, r_Fa
 {
 }
 
-void SWITCH::SimMode()
-{
-	state = STATUS::HIGH;
-	Operate();
-}
 
-void SWITCH::EditMode()
-{
-	state = STATUS::LOW;
-}
 
 void SWITCH::Operate()
-{
+{//should switch its value each time pressed
 	state = STATUS::HIGH;
-	if (state ==HIGH ) {
+	if (state == HIGH) {
 		m_OutputPin.setStatus(HIGH);
 	}
 	else m_OutputPin.setStatus(LOW);
@@ -30,7 +21,7 @@ void SWITCH::Operate()
 void SWITCH::Draw(UI* pUI)
 {
 	//Call output class AND pass gate drawing info to it.
-	pUI->DrawSWITCH(*m_pGfxInfo,getSelectStatus());
+	pUI->DrawSWITCH(*m_pGfxInfo, getSelectStatus());
 }
 
 //returns status of outputpin

@@ -65,9 +65,6 @@ void UI::GetLastPoint(int& x, int& y)
 	y = Ly;
 }
 
-
-
-
 MODE UI::GetAppMode() {
 	return AppMode;
 }
@@ -181,8 +178,8 @@ ActionType UI::GetUserAction()
 			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
 
 			switch (ClickedItemOrder)
-			{
-			case ITM_SIM: return SIM;
+			{/*
+			case ITM_SIM: return SIM;*/
 			case ITM_TRUTH: return TRUTH;
 			case ITM_SWITCH_BAR2: return DSN_MODE;
 
@@ -191,7 +188,11 @@ ActionType UI::GetUserAction()
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
 			}
 		}
-
+		//[2] User clicks on the drawing area
+		if (y >= ToolBarHeight && y < height - StatusBarHeight)
+		{
+			return SIM;	//user want to turn on/off the switch
+		}
 	}
 }
 
@@ -296,8 +297,8 @@ void UI::CreateSimulationToolBar()
 {
 	AppMode = SIMULATION;	//Simulation Mode
 
-	string MenuItemImages[ITM_SIM_CNT];
-	MenuItemImages[ITM_SIM] = "images\\Menu\\MENU_SIM.jpg";
+	string MenuItemImages[ITM_SIM_CNT];/*
+	MenuItemImages[ITM_SIM] = "images\\Menu\\MENU_SIM.jpg";*/
 	MenuItemImages[ITM_TRUTH] = "images\\Menu\\MENU_TRUTH.jpg";
 	MenuItemImages[ITM_SWITCH_BAR2] = "images\\Menu\\MENU_SWITCH_BAR2.jpg";
 	MenuItemImages[ITM_EXIT2] = "images\\Menu\\MENU_EXIT2.jpg";

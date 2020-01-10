@@ -1,10 +1,9 @@
 #ifndef SIMULATE_H
 #define SIMULATE_H
 
-#include "..\Components\Component.h"
-#include"Action.h"
+#include "SELECT.h"
 
-class Simulate : public Action
+class Simulate : public SELECT
 {
 public:
 	Simulate(ApplicationManager* pApp);
@@ -16,6 +15,6 @@ public:
 	virtual void Undo();
 	virtual void Redo();
 	void DistributeOutput(Component* Root);
-	bool CircuitConnected();
+	void RunCircuit();
 };
 #endif // !SIMULATE_H
