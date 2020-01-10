@@ -15,6 +15,7 @@ void Delete::Execute()
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
 	Component** Objects = pManager->getComps();
+	Connection** conns = pManager->getConns();
 	for (int j = 0; j < pManager->getCompCount(); j++) {
 		if (Objects[j] != NULL) {
 			Objects[j]->setSelectStatus(false);
@@ -56,6 +57,15 @@ void Delete::Execute()
 					Objects[i] = NULL;
 					pManager->UpdateInterface();
 				}
+			}
+		}
+		for (int i = 0; i < pManager->getConnCount(); i++) {
+			if (conns[i] != NULL) {
+				if (!conns[i]->getDestPin()->isConnected()||!conns[i]->getSourcePin()->getConnCount()) {
+					conns[i] = NULL;
+					pManager->UpdateInterface();
+				}
+
 			}
 		}
 		pUI->ClearStatusBar();
