@@ -108,3 +108,10 @@ bool Component::ComponentConnected()
 	else
 		return true;
 }
+
+void Component::DeleteConnections()
+{
+	for (int i = 0; i < Inpinscount; i++)
+		m_InputPins[i].RemoveWire();
+	m_OutputPin.RemoveConnections();
+}

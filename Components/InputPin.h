@@ -13,6 +13,7 @@ class InputPin: public Pin	//inherited from class Pin
 	Connection* wire;
 public:
 	InputPin();
+	void RemoveWire();
 	Connection* getWire();
 	void setConnected(Connection* connector);
 	void setComponent(Component* pCmp);	//sets the component of this input pin

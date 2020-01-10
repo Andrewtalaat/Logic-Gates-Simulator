@@ -26,6 +26,7 @@ public:
 	bool Max_reached();
 	int getConnCount(); //can act as boolean isConnected()
 	Connection** getConnList();
+	void RemoveConnections();
 };
 
 #endif

@@ -40,3 +40,12 @@ Connection** OutputPin::getConnList()
 {
 	return m_Connections;
 }
+
+void OutputPin::RemoveConnections()
+{
+	for (int i = 0; i < m_Conn; i++)
+	{
+		m_Connections[i] = NULL;
+	}
+	m_Conn = 0;
+}

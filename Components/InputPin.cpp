@@ -29,3 +29,9 @@ Connection* InputPin::getWire()
 {
 	return wire;
 }
+
+void InputPin::RemoveWire()
+{
+	wire = NULL;
+	connected = false;
+}
