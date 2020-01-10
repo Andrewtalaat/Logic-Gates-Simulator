@@ -5,7 +5,7 @@
 #include "ApplicationManager.h"
 int main()
 {
-	////commmeeent9999
+
 	ActionType ActType;
 	//Create an object of ApplicationManager
 	ApplicationManager AppManager;
