@@ -8,7 +8,7 @@ int main()
 	ActionType ActType;
 	//Create an object of ApplicationManager
 	ApplicationManager AppManager;
-
+	///comm
 	while (true)
 	{
 		//Read user action
