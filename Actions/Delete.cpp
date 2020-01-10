@@ -51,11 +51,13 @@ void Delete::Execute()
 	}
 	else {
 		for (int i = 0; i < pManager->getCompCount(); i++) {
-			if (Objects[i]->getSelectStatus()) {
-				Objects[i] = NULL;
-				int comp = pManager->getCompCount() - 1;
-				pManager->setCompCount(comp);
-				pManager->UpdateInterface();
+			if (Objects[i]!= NULL) {
+				if (Objects[i]->getSelectStatus()) {
+					Objects[i] = NULL;
+					int comp = pManager->getCompCount() - 1;
+					pManager->setCompCount(comp);
+					pManager->UpdateInterface();
+				}
 			}
 
 		}

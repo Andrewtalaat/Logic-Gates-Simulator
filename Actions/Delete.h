@@ -11,7 +11,7 @@ private:
 	int x, y;	//THE POINT WHERE THE USER CLICKS
 	int x1, y1, x2, y2;	//Two corners of the rectangluar area
 public:
-	ActionType userkey=SELECT_THIS;
+	ActionType userkey;
 	Delete(ApplicationManager* pApp);
 	virtual ~Delete(void);
 
