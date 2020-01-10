@@ -151,7 +151,7 @@ void ApplicationManager::UpdateInterface()
 			CompList[i]->Draw(pUI);
 			CompList[i]->DispLabel(pUI);
 		}
-	}
+	}	
 	for (int i = 0; i < ConnCount; i++) {
 		if (ConnList[i] != NULL) {
 			ConnList[i]->DrawC(pUI);
