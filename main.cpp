@@ -3,7 +3,6 @@
 #include <cmath>
 
 #include "ApplicationManager.h"
-
 int main()
 {
 	ActionType ActType;

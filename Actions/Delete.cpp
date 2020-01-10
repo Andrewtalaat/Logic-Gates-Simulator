@@ -23,7 +23,7 @@ void Delete::Execute()
 	pManager->UpdateInterface();
 
 	//Print Action Message
-	pUI->PrintMsg("Click on the components to select, then click on the Delete item again : " );
+	pUI->PrintMsg("Click on the components to select, then click on the Delete item again to delete them: " );
 	while (userkey != DEL) {
 		//Get Center point of the Gate
 		pUI->GetLastPoint(x, y);
