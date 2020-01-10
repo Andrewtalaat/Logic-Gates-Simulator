@@ -42,7 +42,6 @@ void Delete::Execute()
 				break;
 			}
 			}
-
 		}
 		userkey = pUI->GetUserAction();
 	}
@@ -59,10 +58,8 @@ void Delete::Execute()
 					pManager->UpdateInterface();
 				}
 			}
-
 		}
 	}
-
 }
 void Delete::Undo()
 {}
