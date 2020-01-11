@@ -180,9 +180,15 @@ void AddConnection::Execute()
 		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
 		pManager->AddConn(Cnct);
 	}
+<<<<<<< HEAD
 	else if (Objects[i_index]->GetName() == "MODULE")
 	{
 		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], modInpin, modOutpin);
+=======
+	else
+	{
+		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
+>>>>>>> Editing-the-modoule
 		pManager->AddConn(Cnct);
 	}
 
