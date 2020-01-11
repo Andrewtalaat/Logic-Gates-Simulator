@@ -55,7 +55,6 @@ void Delete::Execute()
 				if (Objects[i]->getSelectStatus()) {
 					Objects[i]->DeleteConnections();
 					Objects[i] = NULL;
-					pManager->UpdateInterface();
 				}
 			}
 		}
@@ -63,7 +62,6 @@ void Delete::Execute()
 			if (conns[i] != NULL) {
 				if (!conns[i]->getDestPin()->isConnected()||!conns[i]->getSourcePin()->getConnCount()) {
 					conns[i] = NULL;
-					pManager->UpdateInterface();
 				}
 
 			}

@@ -43,9 +43,9 @@ Connection** OutputPin::getConnList()
 
 void OutputPin::RemoveConnections()
 {
-	/*for (int i = 0; i < m_Conn; i++)
+	for (int i = 0; i < m_Conn; i++)
 	{
 		m_Connections[i] = NULL;
 	}
-	m_Conn = 0;*/
+	m_Conn = 0;
 }
