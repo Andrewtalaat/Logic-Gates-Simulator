@@ -126,9 +126,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	case SIM:
 		pAct = new Simulate(this);
+		break;
 	case SAVE:
 		for (int i = 0; i < CompCount; i++) {
-			CompList[i]->Save();
+			if (CompList[i] != NULL) {
+				CompList[i]->Save();
+			}
 		}
 		break;
 	case LOAD:
