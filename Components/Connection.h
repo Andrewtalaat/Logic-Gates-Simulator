@@ -29,7 +29,6 @@ public:
 	virtual void DrawC(UI* pUI);//for each connection to Draw 
 	Component* getDstCmpnt();
 	void setSourcePin();
-	void setSourcePinMOD();
 	void setDestPin();
 	OutputPin* getSourcePin();
 	InputPin* getDestPin();

@@ -96,7 +96,7 @@ bool Component::getSelectStatus()
 
 Component::~Component()
 {
-	delete[] m_InputPins;
+	delete m_InputPins;
 }
 
 bool Component::OutputisFull()

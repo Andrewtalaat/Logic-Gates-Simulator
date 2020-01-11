@@ -103,17 +103,13 @@ void AddConnection::Execute()
 			int Ly_up = Objects[i]->getGfxInfo()->PointsList[0].y;
 			int Ly = (Ly_down + Ly_up) / 2; //center y coordinate
 
-
-
-
-
 			if (Location.x < Lx + r && Location.x > Lx - r && Location.y < Ly_down && Location.y > Ly_up)
 			{
 				i_index = i;
 				if (Objects[i]->GetName() == "MODULE")
 				{
 					Ly_up = Ly_up + (pUI->getGateHeight()) / 10;
-					int fac = (pUI->getGateHeight()*(4/25));
+					int fac = ( pUI->getGateHeight()*(0.16));
 					for (int z = 0; z < 5; z++)
 					{
 						if (Location.y > Ly_up + z*fac && Location.y < Ly_up + fac*(z+1))
@@ -123,10 +119,13 @@ void AddConnection::Execute()
 						}
 					}
 				}
-				if (Location.y > Ly) //if the user pressed in the lower half
-					n = Cdown;
-				else //if the user pressed in the upper half
-					n = Cup;
+				else
+				{
+					if (Location.y > Ly) //if the user pressed in the lower half
+						n = Cdown;
+					else //if the user pressed in the upper half
+						n = Cup;
+				}
 			}
 		}
 	}
@@ -139,9 +138,6 @@ void AddConnection::Execute()
 		return;
 	}
 	pUI->ClearStatusBar();
-
-
-
 
 	inputGate = Objects[i_index]->GetName();
 	if (inputGate == "LED" || inputGate == "NOT")//gates have only one input pin
