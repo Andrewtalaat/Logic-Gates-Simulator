@@ -2,11 +2,13 @@
 
 Component::Component(GraphicsInfo* r_GfxInfo, int FanOut) :m_OutputPin(FanOut)
 {
-	m_pGfxInfo = r_GfxInfo;	
+	m_pGfxInfo = r_GfxInfo;
+	
 }
 Component::Component()
 {
 	isDrawn = false;
+	
 }
 
 
@@ -41,7 +43,8 @@ int Component::getInpincount()
 
 InputPin* Component::GetInputpins()
 {
-	return m_InputPins;
+	if(m_InputPins)
+		return m_InputPins;
 }
 
 OutputPin* Component::GetOutputpin()  
