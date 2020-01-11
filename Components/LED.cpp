@@ -19,7 +19,7 @@ void LED::Operate()
 void LED::Draw(UI* pUI)
 {
 	//Call output class LED pass gate drawing info to it.
-	pUI->DrawLED(*m_pGfxInfo,getSelectStatus());
+	pUI->DrawLED(*m_pGfxInfo,getSelectStatus(), state);
 }
 
 //returns status of outputpin

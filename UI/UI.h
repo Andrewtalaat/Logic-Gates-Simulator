@@ -157,10 +157,10 @@ public:
 	void DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 
 	// Draws LED item
-	void DrawLED(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+	void DrawLED(const GraphicsInfo& r_GfxInfo, bool selected, STATUS state) const;
 
 	// Draws SWITCH item
-	void DrawSWITCH(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+	void DrawSWITCH(const GraphicsInfo& r_GfxInfo, bool selected, STATUS state) const;
 
 	// Draws MODULE item
 	void DrawMODULE(const GraphicsInfo& r_GfxInfo, bool selected = false) const;

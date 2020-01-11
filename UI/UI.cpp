@@ -410,11 +410,15 @@ void UI::DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected) const
 	//Set the Image Width & Height by XOR Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 }
-void UI::DrawSWITCH(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawSWITCH(const GraphicsInfo& r_GfxInfo, bool selected, STATUS state) const
 {
 	string GateImage;
-	if (selected)	//use image in the highlighted case
+	if (state && selected)	//use image in the highlighted case
+		GateImage = "Images\\Gates\\SWITCH_CLOSED_Hi.jpg";
+	else if (selected)
 		GateImage = "Images\\Gates\\SWITCH_OPEN_Hi.jpg";
+	else if (state)
+		GateImage = "Images\\Gates\\SWITCH_CLOSED.jpg";
 	else
 		GateImage = "Images\\Gates\\SWITCH_OPEN.jpg";
 
@@ -422,11 +426,15 @@ void UI::DrawSWITCH(const GraphicsInfo& r_GfxInfo, bool selected) const
 	//Set the Image Width & Height by XOR Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 }
-void UI::DrawLED(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawLED(const GraphicsInfo& r_GfxInfo, bool selected, STATUS state) const
 {
 	string GateImage;
-	if (selected)	//use image in the highlighted case
+	if (state && selected)	//use image in the highlighted case
+		GateImage = "Images\\Gates\\LED_ON_Hi.jpg";
+	else if (selected)
 		GateImage = "Images\\Gates\\LED_OFF_Hi.jpg";
+	else if (state)
+		GateImage = "Images\\Gates\\LED_ON.jpg";
 	else
 		GateImage = "Images\\Gates\\LED_OFF.jpg";
 

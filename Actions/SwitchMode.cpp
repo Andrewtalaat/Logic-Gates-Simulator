@@ -28,6 +28,9 @@ void SwitchMode::Execute()
 			pUI->CreateSimulationToolBar();
 			pUI->CreateStatusBar();
 			pUI->SetAppMode(SIMULATION);
+			pUI->PrintMsg("Click on a switch to start simulation.");
+			Sleep(2000);
+			pUI->ClearStatusBar();
 		}
 	}
 	else {

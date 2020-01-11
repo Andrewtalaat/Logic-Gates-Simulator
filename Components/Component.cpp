@@ -9,6 +9,8 @@ Component::Component()
 	isDrawn = false;
 }
 
+void Component::TurnSwitch()
+{}
 
 GraphicsInfo* Component::getGfxInfo()
 {

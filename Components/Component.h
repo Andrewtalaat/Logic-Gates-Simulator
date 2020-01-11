@@ -21,6 +21,7 @@ protected:
 	bool isDrawn = true;
 public:
 	/*Component();*/
+	virtual void TurnSwitch();
 	Component(GraphicsInfo *r_GfxInfo, int FanOut);
 	Component();
 	GraphicsInfo* getGfxInfo();
