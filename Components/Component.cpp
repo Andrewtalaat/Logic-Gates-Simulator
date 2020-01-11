@@ -9,6 +9,8 @@ Component::Component()
 	isDrawn = false;
 }
 
+
+
 void Component::TurnSwitch()
 {}
 
@@ -47,6 +49,9 @@ OutputPin* Component::GetOutputpin()
 	OutputPin* ptr = &m_OutputPin;
 	return ptr;
 }
+
+OutputPin* Component::GetOutputPin2()
+{}
 
 void Component::SimMode()
 {}
@@ -95,6 +100,9 @@ bool Component::OutputisFull()
 {
 	return m_OutputPin.Max_reached();
 }
+
+bool Component::Output2isFull()
+{}
 
 bool Component::ComponentConnected()
 {
