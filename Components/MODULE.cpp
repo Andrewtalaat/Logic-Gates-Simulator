@@ -1,6 +1,6 @@
 #include "MODULE.h"
 
-MODULE::MODULE(GraphicsInfo* r_pGfxInfo, int r_FanOut) :Gate(r_pGfxInfo, 5, r_FanOut) 
+MODULE::MODULE(GraphicsInfo* r_pGfxInfo, int r_FanOut) :Gate(r_pGfxInfo, 2, r_FanOut) 
 {
 
 }
@@ -41,20 +41,20 @@ void MODULE::Operate()
 
 
 	//to compute the second output:
-	ExorD.setInputPinStatus(1, MODULE::m_InputPins[4].getStatus());
-	ExorD.setInputPinStatus(2, MODULE::m_InputPins[3].getStatus());
+	ExorD.setInputPinStatus(1, GetInputPinStatus(5) );
+	ExorD.setInputPinStatus(2, GetInputPinStatus(4));
 	ExorD.Operate();
 	STATUS ED2 = ExorD.GetOutPinStatus();
-	AnorB.setInputPinStatus(1, MODULE::m_InputPins[0].getStatus());
-	AnorB.setInputPinStatus(2, MODULE::m_InputPins[1].getStatus());
+	AnorB.setInputPinStatus(1, GetInputPinStatus(1));
+	AnorB.setInputPinStatus(2, GetInputPinStatus(2));
 	AnorB.Operate();
 	STATUS AB2 = AnorB.GetOutPinStatus();
-	CandB.setInputPinStatus(1, MODULE::m_InputPins[2].getStatus());
-	CandB.setInputPinStatus(2, MODULE::m_InputPins[1].getStatus());
+	CandB.setInputPinStatus(1, GetInputPinStatus(3));
+	CandB.setInputPinStatus(2, GetInputPinStatus(2));
 	CandB.Operate();
 	STATUS CB = CandB.GetOutPinStatus();
-	AxnorB.setInputPinStatus(1, MODULE::m_InputPins[0].getStatus());
-	AxnorB.setInputPinStatus(2, MODULE::m_InputPins[1].getStatus());
+	AxnorB.setInputPinStatus(1, GetInputPinStatus(1));
+	AxnorB.setInputPinStatus(2, GetInputPinStatus(2));
 	AxnorB.Operate();
 	STATUS AB3 = AxnorB.GetOutPinStatus();
 	EDnandAB.setInputPinStatus(1, ED2);
@@ -110,3 +110,21 @@ string MODULE::GetName()
 	return "MODULE";
 }
 
+OutputPin* MODULE::GetOutputPin2()
+{
+	OutputPin* ptr = &m_OutputPin;
+	return ptr;
+}
+
+bool MODULE::Output2isFull()
+{
+	return m_OutputPin2.Max_reached();
+}
+
+void MODULE::DeleteConnections()
+{
+	for (int i = 0; i < Inpinscount; i++)
+		m_InputPins[i].RemoveWire();
+	m_OutputPin.RemoveConnections();
+	m_OutputPin2.RemoveConnections();
+}

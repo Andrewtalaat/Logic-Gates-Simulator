@@ -14,9 +14,9 @@ void AddConnection::Redo()
 
 void AddConnection::Execute()
 {
-	int modOutpin, modInpin;
+	int modOutpin=0;
 	string inputGate;
-	int n = 0; //determines which input pin the connection enters, 0 for the upper (or only) pin, 1 for lower pin
+	InputPinIndex n; 
 	int c = pManager->getCompCount(); //number of components
 	Component** Objects = pApp->getComps(); //array of components
 	//Get a Pointer to the user Interfaces
@@ -35,7 +35,7 @@ void AddConnection::Execute()
 			int Rx = Objects[i]->getGfxInfo()->PointsList[1].x; // Rightmost x coordinate
 			int Ry_down = Objects[i]->getGfxInfo()->PointsList[1].y; //Lower y coordinate
 			int Ry_up = Objects[i]->getGfxInfo()->PointsList[0].y;// Upper y coordinate
-
+			
 			if (Location.x < Rx + r && Location.x > Rx - r && Location.y < Ry_down && Location.y > Ry_up)
 			{
 				o_index = i; //setting the output index
@@ -49,7 +49,7 @@ void AddConnection::Execute()
 			}
 		}
 	}
-	if (o_index < 0) //the previous if statement held false, and o_index=-1 still
+	if (o_index<0) //the previous if statement held false, and o_index=-1 still
 
 	{
 		pUI->PrintMsg("Cannot find an output pin. try again");
@@ -64,12 +64,25 @@ void AddConnection::Execute()
 		pUI->ClearStatusBar();
 		return;
 	}
-	else if (Objects[o_index]->OutputisFull())
+	else if (modOutpin != 0) //this is not a module, or the first output is chosen 
 	{
-		pUI->PrintMsg("Cannot make any more connections to this output.");
-		Sleep(2000);
-		pUI->ClearStatusBar();
-		return;
+		if (Objects[o_index]->OutputisFull())
+		{
+			pUI->PrintMsg("Cannot make any more connections to this output.");
+			Sleep(2000);
+			pUI->ClearStatusBar();
+			return;
+		}
+	}
+	else if (modOutpin ==2)
+	{
+		if (Objects[o_index]->Output2isFull())
+		{
+			pUI->PrintMsg("Cannot make any more connections to this output.");
+			Sleep(2000);
+			pUI->ClearStatusBar();
+			return;
+		}
 	}
 
 	pUI->ClearStatusBar();
@@ -77,8 +90,8 @@ void AddConnection::Execute()
 
 
 	pUI->GetPointClicked(Location.x, Location.y);
-
-	for (int i = 0; i < c; i++)
+	
+	for (int i = 0; i < c ; i++)
 	{
 		if (i == o_index) //a gate cannot connect to itself
 			continue;
@@ -95,25 +108,28 @@ void AddConnection::Execute()
 				i_index = i;
 				if (Objects[i]->GetName() == "MODULE")
 				{
-					Ly_up = Ly_up + (pUI->getGateHeight() / 10);
-					int fac = (pUI->getGateHeight() * (4 / 25));
+					Ly_up = Ly_up + (pUI->getGateHeight()) / 10;
+					int fac = ( pUI->getGateHeight()*(0.16));
 					for (int z = 0; z < 5; z++)
 					{
-						if (Location.y > Ly_up + z * fac && Location.y < Ly_up + fac * (z + 1))
+						if (Location.y > Ly_up + z*fac && Location.y < Ly_up + fac*(z+1))
 						{
-							modInpin = z + 1;
+							n = (InputPinIndex) (z);
 							break;
 						}
 					}
 				}
-				if (Location.y > Ly) //if the user pressed in the lower half
-					n = 1;
-				else //if the user pressed in the upper half
-					n = -1;
+				else
+				{
+					if (Location.y > Ly) //if the user pressed in the lower half
+						n = Cdown;
+					else //if the user pressed in the upper half
+						n = Cup;
+				}
 			}
 		}
 	}
-	if (i_index < 0) //a valid input pin wasn't found
+	if (i_index<0) //a valid input pin wasn't found
 
 	{
 		pUI->PrintMsg("Cannot find an input pin. Try again");
@@ -121,15 +137,11 @@ void AddConnection::Execute()
 		pUI->ClearStatusBar();
 		return;
 	}
-
 	pUI->ClearStatusBar();
-
-
-
 
 	inputGate = Objects[i_index]->GetName();
 	if (inputGate == "LED" || inputGate == "NOT")//gates have only one input pin
-		n = 0;
+		n = Cmid;
 	else if (inputGate == "SWITCH") //Switches have no input pins
 	{
 		pUI->PrintMsg("A switch does not take input.");
@@ -138,37 +150,33 @@ void AddConnection::Execute()
 		return;
 	}
 
-	if (Objects[i_index]->GetName() != "MODULE")
+	bool InputPinConnected;
+	switch (n) 
 	{
-		if (n != 1)
-		{
-			if (Objects[i_index]->InputisConnected(0))
-			{
-				pUI->PrintMsg("Input pin already has a connection.");
-				Sleep(2000);
-				pUI->ClearStatusBar();
-				return;
-			}
-		}
-		else if (n == 1)
-		{
-			if (Objects[i_index]->InputisConnected(1))
-			{
-				pUI->PrintMsg("Input pin already has a connection.");
-				Sleep(2000);
-				pUI->ClearStatusBar();
-				return;
-			}
-		}
-		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
-		pManager->AddConn(Cnct);
-	}
-	else
-	{
-		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
-		pManager->AddConn(Cnct);
+	case Cup: 
+		InputPinConnected = Objects[i_index]->InputisConnected(0);
+		break; 
+	case Cmid: 
+		InputPinConnected = Objects[i_index]->InputisConnected(0); 
+		break;
+	case Cdown: 
+		InputPinConnected = Objects[i_index]->InputisConnected(1); 
+		break;
+	default: 
+		InputPinConnected = Objects[i_index]->InputisConnected((int) n);
+		break;
 	}
 
+	if (InputPinConnected)
+	{
+		pUI->PrintMsg("Input pin already has a connection.");
+		Sleep(2000);
+		pUI->ClearStatusBar();
+		return;
+	}
+
+	Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n, modOutpin);
+	pManager->AddConn(Cnct);
 	pUI->PrintMsg("You have successfuly connected two objects.");
 	Sleep(2000);
 	pUI->ClearStatusBar();

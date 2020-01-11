@@ -22,7 +22,7 @@ void SwitchMode::Execute()
 			Sleep(2000);
 			pUI->ClearStatusBar();
 			return;
-		}
+		} 
 		else
 		{
 			pUI->CreateSimulationToolBar();
@@ -48,7 +48,8 @@ bool SwitchMode::CircuitConnected()
 	Component** Objects = pManager->getComps();
 	for (int i = 0; i < comp; i++)
 	{
-		if (!Objects[i]->ComponentConnected())
+		if (Objects[i] != NULL)
+			if (!Objects[i]->ComponentConnected())
 			return false;
 	}
 	return true;

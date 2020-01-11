@@ -43,10 +43,10 @@ void Copy::Execute()
 	if (copyname=="non")
 	{
 		pUI->PrintMsg("Please select a component and click on the copy item again again.");
-		Sleep(3000);
+		Sleep(2000);
 	}else 
 		pUI->PrintMsg("Copied successfully ");
-	Sleep(3000);
+	Sleep(2000);
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 

@@ -43,10 +43,10 @@ void Cut::Execute()
 	//Checking for the selection of one component.
 	if (cutname == "non")
 	{
-		pUI->PrintMsg("Please select a component and click on the copy item again again.");
-		Sleep(3000);
-	}else 		pUI->PrintMsg("Copied successfully ");
-	Sleep(3000);
+		pUI->PrintMsg("Please select a component and click on the cut item again again.");
+		Sleep(2000);
+	}else 	pUI->PrintMsg("Copied successfully ");
+	Sleep(2000);
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 	//Delete the original component with its connections 
@@ -55,7 +55,6 @@ void Cut::Execute()
 			if (Objects[i]->getSelectStatus()) {
 				Objects[i]->DeleteConnections();
 				Objects[i] = NULL;
-				pManager->UpdateInterface();
 			}
 		}
 	}
@@ -63,7 +62,6 @@ void Cut::Execute()
 		if (conns[i] != NULL) {
 			if (!conns[i]->getDestPin()->isConnected() || !conns[i]->getSourcePin()->getConnCount()) {
 				conns[i] = NULL;
-				pManager->UpdateInterface();
 			}
 
 		}
