@@ -21,7 +21,7 @@ protected:
 public:
 	//Connection(const GraphicsInfo &r_GfxInfo, Component *pS=NULL,Component *pD=NULL, int Pin=0);
 	Connection(Component* SrcCmpnt, Component* DstCmpnt, int pin_index);
-
+	Connection(Component* SrcCmpnt, Component* DstCmpnt, int Inputindex, int Outputindex);
 	virtual void Operate() ;	//Calculates the output according to the inputs
 	virtual void DrawC(UI* pUI);//for each connection to Draw 
 	Component* getDstCmpnt();

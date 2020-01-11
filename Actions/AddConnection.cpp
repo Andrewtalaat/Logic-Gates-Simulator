@@ -14,6 +14,7 @@ void AddConnection::Redo()
 
 void AddConnection::Execute()
 {
+	int modOutpin, modInpin;
 	string inputGate;
 	int n=0; //determines which input pin the connection enters, 0 for the upper (or only) pin, 1 for lower pin
 	int c = pManager->getCompCount(); //number of components
@@ -34,10 +35,17 @@ void AddConnection::Execute()
 			int Rx = Objects[i]->getGfxInfo()->PointsList[1].x; // Rightmost x coordinate
 			int Ry_down = Objects[i]->getGfxInfo()->PointsList[1].y; //Lower y coordinate
 			int Ry_up = Objects[i]->getGfxInfo()->PointsList[0].y;// Upper y coordinate
-
+			
 			if (Location.x < Rx + r && Location.x > Rx - r && Location.y < Ry_down && Location.y > Ry_up)
 			{
 				o_index = i; //setting the output index
+				if (Objects[i]->GetName() == "MODULE")
+				{
+					if (Location.y > (Ry_down + Ry_up) / 2)
+						modOutpin = 2;
+					else
+						modOutpin = 1;
+				}
 			}
 		}
 	}
@@ -75,14 +83,29 @@ void AddConnection::Execute()
 		if (i == o_index) //a gate cannot connect to itself
 			continue;
 		//finding the nearest input pin (left side) that falls within a certain radius
-		if (Objects[i] != NULL) {
+		if (Objects[i] != NULL)
+		{
 			int Lx = Objects[i]->getGfxInfo()->PointsList[0].x;
 			int Ly_down = Objects[i]->getGfxInfo()->PointsList[1].y;
 			int Ly_up = Objects[i]->getGfxInfo()->PointsList[0].y;
 			int Ly = (Ly_down + Ly_up) / 2; //center y coordinate
+
 			if (Location.x < Lx + r && Location.x > Lx - r && Location.y < Ly_down && Location.y > Ly_up)
 			{
 				i_index = i;
+				if (Objects[i]->GetName() == "MODULE")
+				{
+					Ly_up = Ly_up + pUI->getGateHeight / 10;
+					int fac = (pUI->getGateHeight()*(4/25));
+					for (int z = 0; z < 5; z++)
+					{
+						if (Location.y > Ly_up + z*fac && Location.y < Ly_up + fac*(z+1))
+						{
+							modInpin = z+1;
+							break;
+						}
+					}
+				}
 				if (Location.y > Ly) //if the user pressed in the lower half
 					n = 1;
 				else //if the user pressed in the upper half
@@ -101,6 +124,9 @@ void AddConnection::Execute()
 
 	pUI->ClearStatusBar();
 
+
+
+
 	inputGate = Objects[i_index]->GetName();
 	if (inputGate == "LED" || inputGate == "NOT")//gates have only one input pin
 		n = 0;
@@ -112,28 +138,32 @@ void AddConnection::Execute()
 		return;
 	}
 
-	if (n != 1)
+	if (Objects[i_index]->GetName() != "MODULE")
 	{
-		if (Objects[i_index]->InputisConnected(0))
+		if (n != 1)
 		{
-			pUI->PrintMsg("Input pin already has a connection.");
-			Sleep(2000);
-			pUI->ClearStatusBar();
-			return;
+			if (Objects[i_index]->InputisConnected(0))
+			{
+				pUI->PrintMsg("Input pin already has a connection.");
+				Sleep(2000);
+				pUI->ClearStatusBar();
+				return;
+			}
 		}
-	}
-	else if (n == 1)
-	{
-		if (Objects[i_index]->InputisConnected(1))
+		else if (n == 1)
 		{
-			pUI->PrintMsg("Input pin already has a connection.");
-			Sleep(2000);
-			pUI->ClearStatusBar();
-			return;
+			if (Objects[i_index]->InputisConnected(1))
+			{
+				pUI->PrintMsg("Input pin already has a connection.");
+				Sleep(2000);
+				pUI->ClearStatusBar();
+				return;
+			}
 		}
+		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
 	}
-
-	auto Cnct = new Connection(Objects[o_index], Objects[i_index],n);
+	else
+		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
 	pManager->AddConn(Cnct);
 	pUI->PrintMsg("You have successfuly connected two objects.");
 	Sleep(2000);

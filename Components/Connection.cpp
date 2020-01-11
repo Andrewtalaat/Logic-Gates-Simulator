@@ -1,5 +1,16 @@
 #include "Connection.h"
 
+Connection::Connection(Component* SrcCmpnt, Component* DstCmpnt, int Inputindex, int Outputindex)
+{
+	this->SrcCmpnt = SrcCmpnt;
+	this->DstCmpnt = DstCmpnt;
+	Modin = Inputindex;
+	Modout = Outputindex;
+	if (Modout = 1) //me7tag ashof tare2a a link beha el second output pin bta3 el module bel connection, h3ml virtual void function fadya f component t pass el connection by reference w a3mlha definition f 7alet el module bs.. bs right now ana 3ayz anam nek
+		this->setSourcePin();
+	this->setDestPin();
+}
+
 Connection::Connection(Component* SrcCmpnt, Component* DstCmpnt, int dir)
 {
 	this->SrcCmpnt = SrcCmpnt;
