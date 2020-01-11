@@ -49,3 +49,7 @@ void OutputPin::RemoveConnections()
 	}
 	m_Conn = 0;
 }
+
+void OutputPin::Save()
+{
+}

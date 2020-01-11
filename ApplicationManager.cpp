@@ -24,7 +24,7 @@
 #include <fstream>
 
 ApplicationManager::ApplicationManager()
-{
+{	
 	CompCount = 0;
 	ConnCount = 0;
 	for(int i=0; i<MaxCompCount; i++)
@@ -127,7 +127,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case SIM:
 		pAct = new Simulate(this);
 	case SAVE:
-		void Save();
+		for (int i = 0; i < CompCount; i++) {
+			CompList[i]->Save();
+		}
 		break;
 	case LOAD:
 		void Load();

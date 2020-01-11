@@ -39,6 +39,8 @@ public:
 	virtual OutputPin* GetOutputPin2();
 	virtual bool Output2isFull();
 	virtual void DeleteConnections();
+	virtual void Save();
+
 };
 
 #endif
