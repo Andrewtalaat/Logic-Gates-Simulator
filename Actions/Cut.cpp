@@ -44,8 +44,8 @@ void Cut::Execute()
 	if (cutname == "non")
 	{
 		pUI->PrintMsg("Please select a component and click on the cut item again again.");
-		Sleep(2000);
-	}else 	pUI->PrintMsg("Copied successfully ");
+		Sleep(3000);
+	}else 		pUI->PrintMsg("Copied successfully ");
 	Sleep(2000);
 	//Clear Status Bar
 	pUI->ClearStatusBar();

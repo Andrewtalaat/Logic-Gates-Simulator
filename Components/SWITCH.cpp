@@ -49,3 +49,9 @@ string SWITCH::GetName()
 {
 	return "SWITCH";
 }
+
+void SWITCH::Save() {
+	ofstream myfile;
+	myfile.open("ABD.txt", ios_base::app);
+	myfile << GetName() << "	" << GetLabel() << "		" << m_pGfxInfo->PointsList[0].x << "	" << m_pGfxInfo->PointsList[0].y << endl;
+}

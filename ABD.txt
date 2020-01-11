@@ -1,4 +1,0 @@
-3
-zebby	181	208
-trans	463	376
-zobrak	501	255

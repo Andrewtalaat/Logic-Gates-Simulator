@@ -14,14 +14,14 @@ Component* InputPin::getComponent()
 	return pComp;
 }
 
-
-
-bool InputPin::isConnected()const
+bool InputPin::isConnected() const
 {
 	return connected;
 }
 
-
+void InputPin::Save()
+{
+}
 
 void InputPin::setConnected(Connection* connector)
 {
@@ -38,9 +38,4 @@ void InputPin::RemoveWire()
 {
 	wire = NULL;
 	connected = false;
-}
-
-InputPin::~InputPin()
-{/*
-	delete this;*/
 }

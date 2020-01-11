@@ -27,6 +27,8 @@ public:
 	int getConnCount(); //can act as boolean isConnected()
 	Connection** getConnList();
 	void RemoveConnections();
+	virtual void Save();
+
 };
 
 #endif

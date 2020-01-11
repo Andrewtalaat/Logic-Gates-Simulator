@@ -62,7 +62,7 @@ void Connection::setSourcePin()
 	SrcPin->ConnectTo(this);
 }
 
-void Connection::setDestPin()
+void Connection::setDestPin()	
 {
 	InputPin* hello = DstCmpnt->GetInputpins();
 	switch (InputPin_index)
@@ -118,6 +118,10 @@ STATUS Connection::GetInputPinStatus(int n)	//returns status of Inputpin # n if 
 void Connection::setInputPinStatus(int n, STATUS s)
 {
 	SrcPin->setStatus(s);
+}
+
+void Connection::Save()
+{
 }
 
 Connection::~Connection()

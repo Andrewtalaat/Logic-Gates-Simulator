@@ -5,8 +5,10 @@
 #include "..\UI\UI.h"
 #include "InputPin.h"
 #include "OutputPin.h"
+#include "ApplicationManager.h"
 #include <string>
-
+#include <iostream>
+#include <fstream>
 
 //Base class for classes Gate, Switch, and LED.
 class Component
@@ -50,6 +52,8 @@ public:
 	virtual void setInputPinStatus(int n, STATUS s)=0;	//set status of Inputpin # n, to be used by connection class.
 	virtual bool ComponentConnected();
 	virtual void DeleteConnections();
+	virtual void Save() = 0;
+
 	//Destructor must be virtual
 	virtual ~Component();
 };
