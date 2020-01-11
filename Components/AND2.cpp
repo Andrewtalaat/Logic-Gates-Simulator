@@ -1,5 +1,5 @@
 #include "AND2.h"
-
+using namespace std;
 AND2::AND2(GraphicsInfo *r_pGfxInfo, int r_FanOut):Gate(r_pGfxInfo,2, r_FanOut)
 {
 }
@@ -48,4 +48,9 @@ void AND2::setInputPinStatus(int n, STATUS s)
 string AND2::GetName() 
 {
 	return "AND2";
+}
+void AND2::Save() {
+	ofstream myfile;
+	myfile.open("ABD.txt", ios_base::app);
+	myfile << GetName() << "	" << GetLabel() << "		" << m_pGfxInfo->PointsList[0].x << "	" << m_pGfxInfo->PointsList[0].y << endl;
 }

@@ -19,6 +19,10 @@ bool InputPin::isConnected() const
 	return connected;
 }
 
+void InputPin::Save()
+{
+}
+
 void InputPin::setConnected(Connection* connector)
 {
 	wire = connector;
@@ -34,9 +38,4 @@ void InputPin::RemoveWire()
 {
 	wire = NULL;
 	connected = false;
-}
-
-InputPin::~InputPin()
-{/*
-	delete this;*/
 }

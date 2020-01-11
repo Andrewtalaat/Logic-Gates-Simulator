@@ -6,6 +6,7 @@
 #include "Actions\Action.h"
 #include "Components\Component.h"
 #include "Components/Connection.h"
+#include <fstream>
 //Main class that manages everything in the application.
 class ApplicationManager
 {
