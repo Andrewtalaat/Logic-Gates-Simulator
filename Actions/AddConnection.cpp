@@ -16,7 +16,7 @@ void AddConnection::Execute()
 {
 	int modOutpin, modInpin;
 	string inputGate;
-	int n=0; //determines which input pin the connection enters, 0 for the upper (or only) pin, 1 for lower pin
+	int n = 0; //determines which input pin the connection enters, 0 for the upper (or only) pin, 1 for lower pin
 	int c = pManager->getCompCount(); //number of components
 	Component** Objects = pApp->getComps(); //array of components
 	//Get a Pointer to the user Interfaces
@@ -35,7 +35,7 @@ void AddConnection::Execute()
 			int Rx = Objects[i]->getGfxInfo()->PointsList[1].x; // Rightmost x coordinate
 			int Ry_down = Objects[i]->getGfxInfo()->PointsList[1].y; //Lower y coordinate
 			int Ry_up = Objects[i]->getGfxInfo()->PointsList[0].y;// Upper y coordinate
-			
+
 			if (Location.x < Rx + r && Location.x > Rx - r && Location.y < Ry_down && Location.y > Ry_up)
 			{
 				o_index = i; //setting the output index
@@ -49,7 +49,7 @@ void AddConnection::Execute()
 			}
 		}
 	}
-	if (o_index<0) //the previous if statement held false, and o_index=-1 still
+	if (o_index < 0) //the previous if statement held false, and o_index=-1 still
 
 	{
 		pUI->PrintMsg("Cannot find an output pin. try again");
@@ -77,8 +77,8 @@ void AddConnection::Execute()
 
 
 	pUI->GetPointClicked(Location.x, Location.y);
-	
-	for (int i = 0; i < c ; i++)
+
+	for (int i = 0; i < c; i++)
 	{
 		if (i == o_index) //a gate cannot connect to itself
 			continue;
@@ -95,13 +95,13 @@ void AddConnection::Execute()
 				i_index = i;
 				if (Objects[i]->GetName() == "MODULE")
 				{
-					Ly_up = Ly_up + pUI->getGateHeight / 10;
-					int fac = (pUI->getGateHeight()*(4/25));
+					Ly_up = Ly_up + (pUI->getGateHeight() / 10);
+					int fac = (pUI->getGateHeight() * (4 / 25));
 					for (int z = 0; z < 5; z++)
 					{
-						if (Location.y > Ly_up + z*fac && Location.y < Ly_up + fac*(z+1))
+						if (Location.y > Ly_up + z * fac && Location.y < Ly_up + fac * (z + 1))
 						{
-							modInpin = z+1;
+							modInpin = z + 1;
 							break;
 						}
 					}
@@ -113,7 +113,7 @@ void AddConnection::Execute()
 			}
 		}
 	}
-	if (i_index<0) //a valid input pin wasn't found
+	if (i_index < 0) //a valid input pin wasn't found
 
 	{
 		pUI->PrintMsg("Cannot find an input pin. Try again");
@@ -161,10 +161,14 @@ void AddConnection::Execute()
 			}
 		}
 		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
+		pManager->AddConn(Cnct);
 	}
 	else
+	{
 		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
-	pManager->AddConn(Cnct);
+		pManager->AddConn(Cnct);
+	}
+
 	pUI->PrintMsg("You have successfuly connected two objects.");
 	Sleep(2000);
 	pUI->ClearStatusBar();

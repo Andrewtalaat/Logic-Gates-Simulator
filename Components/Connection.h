@@ -18,7 +18,9 @@ protected:
 	int dir; //related to n, but used in calculation (1 for the down,-1 for up, 0 for middle)
 	OutputPin* SrcPin;	//The Source pin of this connection (an output pin of certain Component)
 	InputPin* DstPin;	//The Destination pin of this connection (an input pin of certain Component)
+	int Modin, Modout;
 public:
+
 	//Connection(const GraphicsInfo &r_GfxInfo, Component *pS=NULL,Component *pD=NULL, int Pin=0);
 	Connection(Component* SrcCmpnt, Component* DstCmpnt, int pin_index);
 	Connection(Component* SrcCmpnt, Component* DstCmpnt, int Inputindex, int Outputindex);
