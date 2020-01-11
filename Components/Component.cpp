@@ -50,8 +50,11 @@ OutputPin* Component::GetOutputpin()
 	return ptr;
 }
 
-OutputPin* Component::GetOutputPin2()
-{}
+OutputPin* Component::GetOutputpin2()
+{
+	OutputPin* ptr = &m_OutputPin;
+	return ptr;
+}
 
 void Component::SimMode()
 {}
@@ -102,7 +105,9 @@ bool Component::OutputisFull()
 }
 
 bool Component::Output2isFull()
-{}
+{
+	return m_OutputPin.Max_reached();
+}
 
 bool Component::ComponentConnected()
 {

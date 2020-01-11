@@ -1,57 +1,63 @@
 #include "Connection.h"
 
-Connection::Connection(Component* SrcCmpnt, Component* DstCmpnt, int Modin, int Modout)
+Connection::Connection(Component* SrcCmpnt, Component* DstCmpnt, InputPinIndex InputPin_index, int Modout)
 {
 	this->SrcCmpnt = SrcCmpnt;
 	this->DstCmpnt = DstCmpnt;
-	this->Modin = Modin;
 	this->Modout = Modout;
-	this->setSourcePinMOD();
-	this->setDestPin();
-}
-
-Connection::Connection(Component* SrcCmpnt, Component* DstCmpnt, int dir)
-{
-	this->SrcCmpnt = SrcCmpnt;
-	this->DstCmpnt = DstCmpnt;
-	this->dir = dir; //1 for the down,-1 for up, 0 for middle or [0,1] == [up,down]
-	if (dir == 1)
-		pin_index = 1;
+	this->InputPin_index = InputPin_index;
 	this->setSourcePin();
 	this->setDestPin();
 }
 
 void Connection::DrawC(UI* pUI)
 {
-	if (DstCmpnt != NULL && SrcCmpnt != NULL) {
+
+	if (DstCmpnt != NULL && SrcCmpnt != NULL) 
+	{
 		int Dy_down = DstCmpnt->getGfxInfo()->PointsList[1].y;
 		int Dy_up = DstCmpnt->getGfxInfo()->PointsList[0].y;
-
 		int Sy_down = SrcCmpnt->getGfxInfo()->PointsList[1].y;
 		int Sy_up = SrcCmpnt->getGfxInfo()->PointsList[0].y;
-
+		int H = pUI->getGateHeight();
 		Src.x = SrcCmpnt->getGfxInfo()->PointsList[1].x;
-		Src.y = (Sy_down + Sy_up) / 2;
 		Dest.x = DstCmpnt->getGfxInfo()->PointsList[0].x;
-		Dest.y = (Dy_down + Dy_up) / 2; //add cases for the y in case of gates with 2 inputs
-		Dest.y = Dest.y + dir * (pUI->getGateHeight()) / 4; //align the location of the pin 
-
-		pUI->DrawConnection(Src, Dest, pUI->getGateWidth(), pUI->getGateWidth(), selected);
+		Dest.y = (Dy_down + Dy_up) / 2; //default location for input pin (middle)
+		switch (Modout)
+		{
+		case 0:
+			Src.y = (Sy_down + Sy_up) / 2;
+			break;
+		case 1:
+			Src.y = (Sy_down + Sy_up) / 2 - 0.145*H;
+			break;
+		case 2: 
+			Src.y = (Sy_down + Sy_up) / 2 + 0.145 * H;
+			break;
+		}
+		switch (InputPin_index)
+		{
+		case Cup:
+			Dest.y = Dest.y - H / 4; 
+			break;
+		case Cmid:
+			break;
+		case Cdown:
+			Dest.y = Dest.y + H / 4;
+			break;
+		default:
+			Dest.y = Dy_up + 0.1875 * H + 0.1563 * (int)(InputPin_index);
+		}
+		pUI->DrawConnection(Src, Dest, selected);
 	}
 }
 
 void Connection::setSourcePin()
 {
-	SrcPin = SrcCmpnt->GetOutputpin();
-	SrcPin->ConnectTo(this);
-}
-
-void Connection::setSourcePinMOD()
-{
-	if (Modout == 1)
+	if (Modout == 2)
+		SrcPin = SrcCmpnt->GetOutputpin2();
+	else
 		SrcPin = SrcCmpnt->GetOutputpin();
-	else if (Modout == 2)
-		SrcPin = SrcCmpnt->GetOutputPin2();
 
 	SrcPin->ConnectTo(this);
 }
@@ -59,17 +65,14 @@ void Connection::setSourcePinMOD()
 void Connection::setDestPin()
 {
 	InputPin* hello = DstCmpnt->GetInputpins();
-	DstPin = &hello[pin_index];
+	DstPin = &hello[InputPin_index];
 	DstPin->setConnected(this);
 }
-
 
 OutputPin* Connection::getSourcePin()
 {
 	return SrcPin;	
 }
-
-
 
 InputPin* Connection::getDestPin()
 {	
@@ -100,4 +103,9 @@ STATUS Connection::GetInputPinStatus(int n)	//returns status of Inputpin # n if 
 void Connection::setInputPinStatus(int n, STATUS s)
 {
 	SrcPin->setStatus(s);
+}
+
+Connection::~Connection()
+{
+	SrcPin->RemoveConnections();
 }

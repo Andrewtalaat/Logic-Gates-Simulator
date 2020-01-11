@@ -103,6 +103,10 @@ void AddConnection::Execute()
 			int Ly_up = Objects[i]->getGfxInfo()->PointsList[0].y;
 			int Ly = (Ly_down + Ly_up) / 2; //center y coordinate
 
+
+
+
+
 			if (Location.x < Lx + r && Location.x > Lx - r && Location.y < Ly_down && Location.y > Ly_up)
 			{
 				i_index = i;
@@ -114,7 +118,7 @@ void AddConnection::Execute()
 					{
 						if (Location.y > Ly_up + z*fac && Location.y < Ly_up + fac*(z+1))
 						{
-							n = (InputPinIndex) (z+1);
+							n = (InputPinIndex) (z);
 							break;
 						}
 					}
@@ -134,7 +138,6 @@ void AddConnection::Execute()
 		pUI->ClearStatusBar();
 		return;
 	}
-
 	pUI->ClearStatusBar();
 
 
@@ -151,47 +154,33 @@ void AddConnection::Execute()
 		return;
 	}
 
+	bool InputPinConnected;
 	switch (n) 
 	{
-	case Cmid: break;
-	}
-	if (Objects[i_index]->GetName() != "MODULE")
-	{
-		if (n != 1)
-		{
-			if (Objects[i_index]->InputisConnected(0))
-			{
-				pUI->PrintMsg("Input pin already has a connection.");
-				Sleep(2000);
-				pUI->ClearStatusBar();
-				return;
-			}
-		}
-		else if (n == 1)
-		{
-			if (Objects[i_index]->InputisConnected(1))
-			{
-				pUI->PrintMsg("Input pin already has a connection.");
-				Sleep(2000);
-				pUI->ClearStatusBar();
-				return;
-			}
-		}
-		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
-		pManager->AddConn(Cnct);
-	}
-<<<<<<< HEAD
-	else if (Objects[i_index]->GetName() == "MODULE")
-	{
-		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], modInpin, modOutpin);
-=======
-	else
-	{
-		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
->>>>>>> Editing-the-modoule
-		pManager->AddConn(Cnct);
+	case Cup: 
+		InputPinConnected = Objects[i_index]->InputisConnected(0);
+		break; 
+	case Cmid: 
+		InputPinConnected = Objects[i_index]->InputisConnected(0); 
+		break;
+	case Cdown: 
+		InputPinConnected = Objects[i_index]->InputisConnected(1); 
+		break;
+	default: 
+		InputPinConnected = Objects[i_index]->InputisConnected((int) n);
+		break;
 	}
 
+	if (InputPinConnected)
+	{
+		pUI->PrintMsg("Input pin already has a connection.");
+		Sleep(2000);
+		pUI->ClearStatusBar();
+		return;
+	}
+
+	Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n, modOutpin);
+	pManager->AddConn(Cnct);
 	pUI->PrintMsg("You have successfuly connected two objects.");
 	Sleep(2000);
 	pUI->ClearStatusBar();

@@ -195,11 +195,6 @@ Connection** ApplicationManager::getConns()
 
 ApplicationManager::~ApplicationManager()
 {
-	for (int i = 0; i < CompCount; i++)
-	{
-		delete CompList[i];
-		CompList[i] = NULL;
-	}
 	delete pUI;
 	pUI = NULL;
 }

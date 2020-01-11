@@ -166,7 +166,7 @@ public:
 	void DrawMODULE(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 
 	// Draws Connection
-	void DrawConnection(const Point Source, const Point Destination, int  GATE_Width, int GATE_Height, bool selected = false) const;
+	void DrawConnection(const Point Source, const Point Destination,bool selected = false) const;
 	
 	void PrintMsg(string msg) const;	//Print a message on Status bar
 

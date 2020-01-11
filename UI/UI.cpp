@@ -456,7 +456,7 @@ void UI::DrawMODULE(const GraphicsInfo& r_GfxInfo, bool selected) const
 }
 
 
-void UI::DrawConnection(const Point S, const Point D, int  GATE_Width, int GATE_Height, bool selected) const
+void UI::DrawConnection(const Point S, const Point D, bool selected) const
 {
 	int x1 = S.x;
 	int x2 = D.x;
