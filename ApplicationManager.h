@@ -19,7 +19,7 @@ private:
 	Component* CompList[MaxCompCount];	//List of all Components (Array of pointers)
 	UI* pUI; //pointer to the UI
 public:	
-/	ApplicationManager(); //constructor
+	ApplicationManager(); //constructor
 
 	//Reads the required action from the user and returns the corresponding action type
 	ActionType GetUserAction();
