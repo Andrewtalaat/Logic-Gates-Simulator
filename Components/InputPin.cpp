@@ -16,7 +16,7 @@ Component* InputPin::getComponent()
 
 
 
-bool InputPin::isConnected()
+bool InputPin::isConnected()const
 {
 	return connected;
 }
