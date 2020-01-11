@@ -16,14 +16,7 @@ void SwitchMode::Execute()
 	UI* pUI = pManager->GetUI();
 	if (pUI->GetAppMode() == DESIGN)
 	{
-		if (pManager->getCompCount())
-		{
-			pUI->PrintMsg("There are no components to simulate.");
-			Sleep(2000);
-			pUI->ClearStatusBar();
-			return;
-		}
-		else if (!CircuitConnected())
+		if (!CircuitConnected())
 		{
 			pUI->PrintMsg("Cannot start simulation unless all circuits are validly connected.");
 			Sleep(2000);

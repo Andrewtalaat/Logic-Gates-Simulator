@@ -463,9 +463,9 @@ void UI::DrawConnection(const Point S, const Point D, bool selected) const
 	int y1 = S.y;
 	int y2 = D.y;
 	if (selected)
-		pWind->SetPen(BLACK, 3);
+		pWind->SetPen(BLACK, 1);
 	else
-		pWind->SetPen(RED, 3);
+		pWind->SetPen(RED, 1);
 	if (abs (y2 - y1) < GATE_Height)
 	{
 		if (x1 < x2)
