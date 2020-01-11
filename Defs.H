@@ -55,24 +55,14 @@ enum ActionType
 
 enum InputPinIndex
 {
-<<<<<<< HEAD
-=======
-	Cup, //Normal Component upper input pin 
-	Cmid, //LED/Inverter input pin
-	Cdown, // lower input pin
->>>>>>> Editing-the-modoule
 	ModOne, //Module input pin #1
 	ModTwo, // ................ #2
 	ModThree, // ................ #3
 	ModFour, // ................ #4
-<<<<<<< HEAD
 	ModFive, // ................ #5
 	Cup, //Normal Component upper input pin 
 	Cmid, //LED/Inverter input pin
 	Cdown // lower input pin
-=======
-	ModFive // ................ #5
->>>>>>> Editing-the-modoule
 };
 
 //Possible Status for the pin
