@@ -16,7 +16,7 @@ void Simulate::Execute()
 	Component** Objects = pManager->getComps();
 	Connection** Connect = pManager->getConns();
 
-	//pUI->PrintMsg("Click on a switch to turn it on/off.");
+	pUI->PrintMsg("Click on a switch to turn it on/off.");
 
 	//Get THE POINT WHERE THE USER CLICKS
 	pUI->GetLastPoint(x, y);

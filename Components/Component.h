@@ -5,7 +5,6 @@
 #include "..\UI\UI.h"
 #include "InputPin.h"
 #include "OutputPin.h"
-#include "ApplicationManager.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -16,7 +15,7 @@ class Component
 protected:
 	string m_Label=" ";
 	bool selected = false;
-	InputPin* m_InputPins;	//Array of input pins of the Gate
+	InputPin* m_InputPins=NULL;	//Array of input pins of the Gate
 	OutputPin m_OutputPin;	//The Gate output pin (modified to be an array)
 	GraphicsInfo* m_pGfxInfo;	//The parameters required to draw a component
 	int Inpinscount;

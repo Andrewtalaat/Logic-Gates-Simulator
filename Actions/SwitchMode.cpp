@@ -16,7 +16,7 @@ void SwitchMode::Execute()
 	UI* pUI = pManager->GetUI();
 	if (pUI->GetAppMode() == DESIGN)
 	{
-		if (pManager->getCompCount())
+		if (!pManager->getCompCount())
 		{
 			pUI->PrintMsg("There are no components to simulate.");
 			Sleep(2000);
