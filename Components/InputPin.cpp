@@ -14,10 +14,14 @@ Component* InputPin::getComponent()
 	return pComp;
 }
 
-bool InputPin::isConnected() const
+
+
+bool InputPin::isConnected()
 {
 	return connected;
 }
+
+
 
 void InputPin::setConnected(Connection* connector)
 {

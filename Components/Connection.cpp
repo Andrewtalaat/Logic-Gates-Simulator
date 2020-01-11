@@ -65,8 +65,23 @@ void Connection::setSourcePin()
 void Connection::setDestPin()	
 {
 	InputPin* hello = DstCmpnt->GetInputpins();
-	DstPin = &hello[InputPin_index];
+	switch (InputPin_index)
+	{
+	case Cup:
+		DstPin = &hello[0];
+		break;
+	case Cmid:
+		DstPin = &hello[0];
+		break;
+	case Cdown:
+		DstPin = &hello[1];
+		break;
+	default:
+		DstPin = &hello[(int) InputPin_index];
+	}
+	
 	DstPin->setConnected(this);
+
 }
 
 OutputPin* Connection::getSourcePin()
