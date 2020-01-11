@@ -59,6 +59,8 @@ void Paste::Execute()
 			pAct = new AddMODULE(pManager);
 		}
 	}
+	if (!pAct)
+		return;
 	pAct->Execute();
 	pManager->UpdateInterface();
 }

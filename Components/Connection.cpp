@@ -62,7 +62,7 @@ void Connection::setSourcePin()
 	SrcPin->ConnectTo(this);
 }
 
-void Connection::setDestPin()	
+void Connection::setDestPin()
 {
 	InputPin* hello = DstCmpnt->GetInputpins();
 	DstPin = &hello[InputPin_index];
