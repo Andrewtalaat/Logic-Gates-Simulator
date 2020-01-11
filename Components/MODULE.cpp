@@ -110,3 +110,21 @@ string MODULE::GetName()
 	return "MODULE";
 }
 
+OutputPin* MODULE::GetOutputPin2()
+{
+	OutputPin* ptr = &m_OutputPin;
+	return ptr;
+}
+
+bool MODULE::Output2isFull()
+{
+	return m_OutputPin2.Max_reached();
+}
+
+void MODULE::DeleteConnections()
+{
+	for (int i = 0; i < Inpinscount; i++)
+		m_InputPins[i].RemoveWire();
+	m_OutputPin.RemoveConnections();
+	m_OutputPin2.RemoveConnections();
+}

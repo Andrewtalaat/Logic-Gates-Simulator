@@ -17,6 +17,14 @@
 
 class MODULE :public Gate
 {
+private:
+	OutputPin m_OutputPin2;
+	AND2 CandE, CEandED, AandB, BandA, CandB;
+	NAND p1NANDp2, p3NANDp4, EDnandAB;
+	OR2 EorD;
+	NOR ABnorBA, AnorB, CBnorAB;
+	XOR ExorD;
+	XNOR AxnorB;
 public:
 	MODULE(GraphicsInfo* r_pGfxInfo, int r_FanOut);
 	virtual void Operate();	//Calculates the output of the MODULE ITEM
@@ -28,14 +36,9 @@ public:
 
 	virtual void setInputPinStatus(int n, STATUS s);	//set status of Inputpin # n, to be used by connection class.
 	virtual string GetName();
-  private:
-	  OutputPin m_OutputPin2;
-	  AND2 CandE, CEandED, AandB, BandA, CandB;
-	  NAND p1NANDp2, p3NANDp4, EDnandAB;
-	  OR2 EorD;
-	  NOR ABnorBA, AnorB, CBnorAB;
-	  XOR ExorD;
-	  XNOR AxnorB;
+	virtual OutputPin* GetOutputPin2();
+	virtual bool Output2isFull();
+	virtual void DeleteConnections();
 };
 
 #endif

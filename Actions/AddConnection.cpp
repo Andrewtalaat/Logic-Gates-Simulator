@@ -95,7 +95,7 @@ void AddConnection::Execute()
 				i_index = i;
 				if (Objects[i]->GetName() == "MODULE")
 				{
-					Ly_up = Ly_up + pUI->getGateHeight / 10;
+					Ly_up = Ly_up + (pUI->getGateHeight()) / 10;
 					int fac = (pUI->getGateHeight()*(4/25));
 					for (int z = 0; z < 5; z++)
 					{
@@ -161,10 +161,14 @@ void AddConnection::Execute()
 			}
 		}
 		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
+		pManager->AddConn(Cnct);
 	}
 	else
+	{
 		Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n);
-	pManager->AddConn(Cnct);
+		pManager->AddConn(Cnct);
+	}
+
 	pUI->PrintMsg("You have successfuly connected two objects.");
 	Sleep(2000);
 	pUI->ClearStatusBar();

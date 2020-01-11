@@ -28,7 +28,8 @@ public:
 	virtual int getInpincount();
 	virtual void AssignInputs(int Inpinscount);
 	virtual InputPin* GetInputpins();
-	virtual OutputPin* GetOutputpin() ; 
+	virtual OutputPin* GetOutputpin(); 
+	virtual OutputPin* GetOutputPin2(); //Empty virtual function for the module
 	/*virtual bool Assign_Inputpin(Connection* connection, int pin_index);*/
 	virtual void Operate() = 0;	//Calculates the output according to the inputs
 	virtual void Draw(UI*) = 0;	//for each component to Draw itself

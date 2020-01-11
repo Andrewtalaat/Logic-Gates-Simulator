@@ -6,26 +6,29 @@
 #include "OutputPin.h"
 #include "Component.h"
 
+
 class Connection
 {
 protected:
+	int Modout=-1;
 	string c_label;
 	bool selected;
 	Point Src, Dest;		//Locations of source and destination objects
 	Component*	SrcCmpnt;	//Connection source component
 	Component*	DstCmpnt;	//Connection Destination component
-	int	pin_index=0;		//The Input pin to which this connection is linked (0 for first pin ,1 for second)
+	InputPinIndex	pin_index;		//The Input pin to which this connection is linked (0 for first pin ,1 for second)
 	int dir; //related to n, but used in calculation (1 for the down,-1 for up, 0 for middle)
 	OutputPin* SrcPin;	//The Source pin of this connection (an output pin of certain Component)
 	InputPin* DstPin;	//The Destination pin of this connection (an input pin of certain Component)
 public:
 	//Connection(const GraphicsInfo &r_GfxInfo, Component *pS=NULL,Component *pD=NULL, int Pin=0);
 	Connection(Component* SrcCmpnt, Component* DstCmpnt, int pin_index);
-	Connection(Component* SrcCmpnt, Component* DstCmpnt, int Inputindex, int Outputindex);
+	Connection(Component* SrcCmpnt, Component* DstCmpnt, int Modin, int Modout);
 	virtual void Operate() ;	//Calculates the output according to the inputs
 	virtual void DrawC(UI* pUI);//for each connection to Draw 
 	Component* getDstCmpnt();
 	void setSourcePin();
+	void setSourcePinMOD();
 	void setDestPin();
 	OutputPin* getSourcePin();
 	InputPin* getDestPin();
