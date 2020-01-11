@@ -60,7 +60,7 @@ void Delete::Execute()
 		}
 		for (int i = 0; i < pManager->getConnCount(); i++) {
 			if (conns[i] != NULL) {
-				if (conns[i]->getDestPin()->isConnected()||!conns[i]->getSourcePin()->getConnCount()) {
+				if (!conns[i]->getDestPin()->isConnected()||!conns[i]->getSourcePin()->getConnCount()) {
 					conns[i] = NULL;
 				}
 
