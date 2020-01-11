@@ -39,8 +39,3 @@ void InputPin::RemoveWire()
 	wire = NULL;
 	connected = false;
 }
-
-InputPin::~InputPin()
-{/*
-	delete this;*/
-}
