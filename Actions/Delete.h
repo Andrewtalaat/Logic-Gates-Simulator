@@ -20,7 +20,7 @@ public:
 
 	virtual void Undo();
 	virtual void Redo();
-
+	virtual void Load(int x, int y);
 
 };
 

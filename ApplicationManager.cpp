@@ -126,13 +126,34 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	case SIM:
 		pAct = new Simulate(this);
+		break;
 	case SAVE:
+		int countComp = 0;
 		for (int i = 0; i < CompCount; i++) {
+			if(CompList[i] != NULL)
+			countComp++;
+		}
+		ofstream myfile;
+		myfile.open("ABD.txt");
+		myfile << countComp << endl;
+		for (int i = 0; i < CompCount; i++) {
+			if (CompList[i] != NULL)
 			CompList[i]->Save();
 		}
-		break;
-	case LOAD:
-		void Load();
+		int countConn = 0;
+		for (int i = 0; i < ConnCount; i++) {
+			if (ConnList[i]->getDestPin()->isConnected()&& ConnList[i]->getSourcePin()->getConnCount())
+				countConn++;
+		}
+		myfile.close();
+		myfile.open("ABD.txt", ios_base::app);
+		myfile << countConn << endl;
+		for (int i = 0; i < ConnCount; i++) {
+			if (ConnList[i] != NULL) {
+				ConnList[i]->Save();
+			}
+		}
+		myfile.close();
 		break;
 	};
 	if(pAct)

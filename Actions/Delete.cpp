@@ -75,3 +75,7 @@ void Delete::Undo()
 void Delete::Redo()
 {}
 
+void Delete::Load(int x, int y)
+{
+}
+

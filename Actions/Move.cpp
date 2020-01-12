@@ -32,3 +32,7 @@ void Move::Undo()
 void Move::Redo()
 {}
 
+void Move::Load(int x, int y)
+{
+}
+

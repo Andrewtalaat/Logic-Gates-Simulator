@@ -57,3 +57,7 @@ void Copy::Undo()
 
 void Copy::Redo()
 {}
+
+void Copy::Load(int x, int y)
+{
+}

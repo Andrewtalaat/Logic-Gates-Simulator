@@ -58,6 +58,7 @@ void AddLED::Redo()
 
 void AddLED::Load(int x, int y)
 {
+	
 	UI* pUI = pManager->GetUI();
 	int gateWidth = pUI->getGateWidth();
 	int gateHeight = pUI->getGateHeight();

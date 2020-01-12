@@ -12,6 +12,10 @@ void AddConnection::Undo()
 void AddConnection::Redo()
 {}
 
+void AddConnection::Load(int x, int y)
+{
+}
+
 void AddConnection::Execute()
 {
 	int modOutpin=0;

@@ -53,6 +53,10 @@ void Simulate::RunCircuit()
 	}
 }
 
+void Simulate::Load(int x, int y)
+{
+}
+
 void Simulate::DistributeOutput(Component* Root)
 {
 	if (Root->GetName() != "SWITCH")

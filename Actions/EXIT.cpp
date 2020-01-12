@@ -31,4 +31,8 @@ void EXIT::Undo()
 void EXIT::Redo()
 {}
 
+void EXIT::Load(int x, int y)
+{
+}
+
 

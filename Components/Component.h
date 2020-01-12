@@ -5,7 +5,6 @@
 #include "..\UI\UI.h"
 #include "InputPin.h"
 #include "OutputPin.h"
-#include "ApplicationManager.h"
 #include <string>
 #include <iostream>
 #include <fstream>

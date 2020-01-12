@@ -56,3 +56,7 @@ void Edit::Undo()
 void Edit::Redo()
 {}
 
+void Edit::Load(int x, int y)
+{
+}
+

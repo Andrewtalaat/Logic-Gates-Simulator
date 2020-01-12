@@ -74,3 +74,7 @@ void Cut::Undo()
 
 void Cut::Redo()
 {}
+
+void Cut::Load(int x, int y)
+{
+}

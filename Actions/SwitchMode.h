@@ -15,7 +15,7 @@ public:
 	virtual void Undo();
 	virtual void Redo();
 	bool CircuitConnected();
-
+	virtual void Load(int x, int y);
 
 };
 

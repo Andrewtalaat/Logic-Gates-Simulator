@@ -62,6 +62,10 @@ bool SwitchMode::CircuitConnected()
 	return true;
 }
 
+void SwitchMode::Load(int x, int y)
+{
+}
+
 void SwitchMode::Undo()
 {}
 

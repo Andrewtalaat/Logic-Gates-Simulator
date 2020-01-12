@@ -19,5 +19,6 @@ public:
 	virtual void Redo();
 	void DistributeOutput(Component* Root);
 	void RunCircuit();
+	virtual void Load(int x, int y);
 };
 #endif // !SIMULATE_H

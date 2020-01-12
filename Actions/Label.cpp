@@ -56,3 +56,7 @@ void Label::Undo()
 void Label::Redo()
 {}
 
+void Label::Load(int x, int y)
+{
+}
+

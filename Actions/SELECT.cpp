@@ -51,3 +51,7 @@ void SELECT::Undo()
 void SELECT::Redo()
 {}
 
+void SELECT::Load(int x, int y)
+{
+}
+

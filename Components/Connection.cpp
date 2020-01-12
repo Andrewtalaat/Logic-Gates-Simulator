@@ -122,6 +122,22 @@ void Connection::setInputPinStatus(int n, STATUS s)
 
 void Connection::Save()
 {
+	ofstream myfile;
+	myfile.open("ABD.txt", ios_base::app);
+	myfile << SrcCmpnt->GetName() << "		" << DstCmpnt->GetName() << "		";
+	switch (InputPin_index) {
+	case Cup:
+		myfile << 1 << endl;
+		break;
+	case Cmid:
+		myfile << 1 << endl;
+		break;
+	case Cdown:
+		myfile << 2 << endl;
+		break;
+	default: 
+		myfile << (int)(InputPin_index + 1) << endl;
+	}
 }
 
 Connection::~Connection()

@@ -68,3 +68,7 @@ void Paste::Undo()
 
 void Paste::Redo()
 {}
+
+void Paste::Load(int x, int y)
+{
+}

@@ -22,7 +22,7 @@ public:
 	//To redo this action (code depends on action type)
 	virtual void Redo()=0;
 	//To load from save file
-	//virtual void Load(int x, int y);
+	virtual void Load(int x, int y)=0;
 };
 
 #endif
