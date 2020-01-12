@@ -3,7 +3,7 @@
 XOR::XOR(GraphicsInfo* r_pGfxInfo, int r_FanOut) :Gate(r_pGfxInfo, 2, r_FanOut)
 {
 }
-XOR::XOR()
+XOR::XOR():Gate(2)
 {
 }
 

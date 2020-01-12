@@ -9,20 +9,20 @@ MODULE::MODULE(GraphicsInfo* r_pGfxInfo, int r_FanOut) :Gate(r_pGfxInfo, 5, r_Fa
 void MODULE::Operate()
 {
 	//to compute the first output:
-	CandE.setInputPinStatus(1, MODULE::m_InputPins[2].getStatus());
-	CandE.setInputPinStatus(2, MODULE::m_InputPins[4].getStatus());
+	CandE.setInputPinStatus(1, GetInputPinStatus(3));
+	CandE.setInputPinStatus(2, GetInputPinStatus(5));
 	CandE.Operate();
 	STATUS CE = CandE.GetOutPinStatus();
-	EorD.setInputPinStatus(1, MODULE::m_InputPins[4].getStatus());
-	EorD.setInputPinStatus(2, MODULE::m_InputPins[3].getStatus());
+	EorD.setInputPinStatus(1, GetInputPinStatus(5));
+	EorD.setInputPinStatus(2, GetInputPinStatus(4));
 	EorD.Operate();
 	STATUS ED = EorD.GetOutPinStatus();
-	AandB.setInputPinStatus(1, MODULE::m_InputPins[0].getStatus());
-	AandB.setInputPinStatus(2, MODULE::m_InputPins[1].getStatus());
+	AandB.setInputPinStatus(1, GetInputPinStatus(1));
+	AandB.setInputPinStatus(2, GetInputPinStatus(2));
 	AandB.Operate();
 	STATUS AB = AandB.GetOutPinStatus();
-	BandA.setInputPinStatus(1, MODULE::m_InputPins[1].getStatus());
-	BandA.setInputPinStatus(2, MODULE::m_InputPins[0].getStatus());
+	BandA.setInputPinStatus(1, GetInputPinStatus(2));
+	BandA.setInputPinStatus(2, GetInputPinStatus(1));
 	BandA.Operate();
 	STATUS BA = BandA.GetOutPinStatus();
 	CEandED.setInputPinStatus(1, CE);
@@ -41,20 +41,20 @@ void MODULE::Operate()
 
 
 	//to compute the second output:
-	ExorD.setInputPinStatus(1, MODULE::m_InputPins[4].getStatus());
-	ExorD.setInputPinStatus(2, MODULE::m_InputPins[3].getStatus());
+	ExorD.setInputPinStatus(1, GetInputPinStatus(5));
+	ExorD.setInputPinStatus(2, GetInputPinStatus(4));
 	ExorD.Operate();
 	STATUS ED2 = ExorD.GetOutPinStatus();
-	AnorB.setInputPinStatus(1, MODULE::m_InputPins[0].getStatus());
-	AnorB.setInputPinStatus(2, MODULE::m_InputPins[1].getStatus());
+	AnorB.setInputPinStatus(1, GetInputPinStatus(1));
+	AnorB.setInputPinStatus(2, GetInputPinStatus(2));
 	AnorB.Operate();
 	STATUS AB2 = AnorB.GetOutPinStatus();
-	CandB.setInputPinStatus(1, MODULE::m_InputPins[2].getStatus());
-	CandB.setInputPinStatus(2, MODULE::m_InputPins[1].getStatus());
+	CandB.setInputPinStatus(1, GetInputPinStatus(3));
+	CandB.setInputPinStatus(2, GetInputPinStatus(2));
 	CandB.Operate();
 	STATUS CB = CandB.GetOutPinStatus();
-	AxnorB.setInputPinStatus(1, MODULE::m_InputPins[0].getStatus());
-	AxnorB.setInputPinStatus(2, MODULE::m_InputPins[1].getStatus());
+	AxnorB.setInputPinStatus(1, GetInputPinStatus(1));
+	AxnorB.setInputPinStatus(2, GetInputPinStatus(2));
 	AxnorB.Operate();
 	STATUS AB3 = AxnorB.GetOutPinStatus();
 	EDnandAB.setInputPinStatus(1, ED2);

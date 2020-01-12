@@ -3,7 +3,7 @@
 NOR::NOR(GraphicsInfo* r_pGfxInfo, int r_FanOut) :Gate(r_pGfxInfo, 2, r_FanOut)
 {
 }
-NOR::NOR() {}
+NOR::NOR():Gate(2) {}
 
 void NOR::Operate()
 {

@@ -3,7 +3,7 @@
 XNOR::XNOR(GraphicsInfo* r_pGfxInfo, int r_FanOut) :Gate(r_pGfxInfo, 2, r_FanOut)
 {
 }
-XNOR::XNOR()
+XNOR::XNOR():Gate(2)
 {
 }
 

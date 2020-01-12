@@ -3,7 +3,7 @@
 NOT::NOT(GraphicsInfo* r_pGfxInfo, int r_FanOut) :Gate(r_pGfxInfo, 1, r_FanOut)
 {
 }
-NOT::NOT() {}
+NOT::NOT():Gate(1) {}
 
 void NOT::Operate()
 {

@@ -9,6 +9,7 @@ Gate::Gate(GraphicsInfo* pGfxInfo, int r_Inputs, int r_FanOut):Component(pGfxInf
 	//Allocate number of input pins (equals r_Inputs)
 	AssignInputs(r_Inputs);
 }
-Gate::Gate()
+Gate::Gate(int r_Inputs)
 {
+	AssignInputs(r_Inputs);
 }
