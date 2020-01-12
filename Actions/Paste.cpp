@@ -16,7 +16,6 @@ void Paste::Execute()
 	Action* pAct = NULL;
 	//Print Action Message
 	pUI->PrintMsg("Select a location to Paste the component into: ");
-	Sleep(3000);
 	if (Copy::getcopiedname() != "non") {
 		name = Copy::getcopiedname();
 		Copy::setcopiedname();
@@ -28,9 +27,7 @@ void Paste::Execute()
 	else {
 		pUI->ClearStatusBar();
 		pUI->PrintMsg("You did not copy or cut any component");
-		Sleep(3000);
-		//Clear Status Bar
-		pUI->ClearStatusBar();
+		
 	}
 	if (name != "non") {
 		if (name == "AND2") {

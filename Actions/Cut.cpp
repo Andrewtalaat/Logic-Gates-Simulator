@@ -44,11 +44,7 @@ void Cut::Execute()
 	if (cutname == "non")
 	{
 		pUI->PrintMsg("Please select a component and click on the cut item again again.");
-		Sleep(3000);
 	}else 		pUI->PrintMsg("Copied successfully ");
-	Sleep(2000);
-	//Clear Status Bar
-	pUI->ClearStatusBar();
 	//Delete the original component with its connections 
 	for (int i = 0; i < pManager->getCompCount(); i++) {
 		if (Objects[i] != NULL) {

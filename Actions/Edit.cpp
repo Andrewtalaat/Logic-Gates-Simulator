@@ -32,15 +32,12 @@ void Edit::Execute()
 				if (Objects[i]->GetLabel() == " ")
 				{
 					pUI->PrintMsg("Component does not have a label, use the label icon instead.");
-					Sleep(1000);
-					pUI->ClearStatusBar();
 					return;
 				}
 				pUI->ClearStatusBar();
 				pUI->PrintMsg("Enter the new label.");
-				Sleep(1000);
-				pUI->ClearStatusBar();
 				Objects[i]->SetLabel(pUI->GetSrting());
+				pUI->ClearStatusBar();
 			}
 		}
 	}

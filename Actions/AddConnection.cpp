@@ -57,15 +57,11 @@ void AddConnection::Execute()
 
 	{
 		pUI->PrintMsg("Cannot find an output pin. try again");
-		Sleep(2000); //pauses for 2 seconds
-		pUI->ClearStatusBar();
 		return; //exits the action class
 	}
 	else if (Objects[o_index]->GetName() == "LED")
 	{
 		pUI->PrintMsg("LEDs do not output.");
-		Sleep(2000);
-		pUI->ClearStatusBar();
 		return;
 	}
 	else if (modOutpin != 0) //this is not a module, or the first output is chosen 
@@ -73,8 +69,6 @@ void AddConnection::Execute()
 		if (Objects[o_index]->OutputisFull())
 		{
 			pUI->PrintMsg("Cannot make any more connections to this output.");
-			Sleep(2000);
-			pUI->ClearStatusBar();
 			return;
 		}
 	}
@@ -83,8 +77,6 @@ void AddConnection::Execute()
 		if (Objects[o_index]->Output2isFull())
 		{
 			pUI->PrintMsg("Cannot make any more connections to this output.");
-			Sleep(2000);
-			pUI->ClearStatusBar();
 			return;
 		}
 	}
@@ -137,8 +129,6 @@ void AddConnection::Execute()
 
 	{
 		pUI->PrintMsg("Cannot find an input pin. Try again");
-		Sleep(2000);
-		pUI->ClearStatusBar();
 		return;
 	}
 	pUI->ClearStatusBar();
@@ -149,8 +139,6 @@ void AddConnection::Execute()
 	else if (inputGate == "SWITCH") //Switches have no input pins
 	{
 		pUI->PrintMsg("A switch does not take input.");
-		Sleep(2000);
-		pUI->ClearStatusBar();
 		return;
 	}
 	bool InputPinConnected;
@@ -173,14 +161,11 @@ void AddConnection::Execute()
 	if (InputPinConnected)
 	{
 		pUI->PrintMsg("Input pin already has a connection.");
-		Sleep(2000);
-		pUI->ClearStatusBar();
+
 		return;
 	}
 
 	Connection* Cnct = new Connection(Objects[o_index], Objects[i_index], n, modOutpin);
 	pManager->AddConn(Cnct);
 	pUI->PrintMsg("You have successfuly connected two objects.");
-	Sleep(2000);
-	pUI->ClearStatusBar();
 }

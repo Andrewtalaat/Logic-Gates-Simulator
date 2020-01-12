@@ -30,8 +30,6 @@ void AddSWITCH::Execute()
 	if (Cy - gate / 2 < y1 || Cy + gate / 2 > y - y2)
 	{
 		pUI->PrintMsg("Invalid location for drawing.");
-		Sleep(2000);
-		pUI->ClearDrawingArea();
 		return; //exits the function 
 	}
 

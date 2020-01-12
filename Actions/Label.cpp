@@ -32,15 +32,12 @@ void Label::Execute()
 				if (Objects[i]->GetLabel() != " ")
 				{
 					pUI->PrintMsg("Component already has a label, use edit label instead.");
-					Sleep(1000);
-					pUI->ClearStatusBar();
 					return;
 				}
 				pUI->ClearStatusBar();
 				pUI->PrintMsg("Enter the label.");
-				Sleep(1000);
-				pUI->ClearStatusBar();
 				Objects[i]->SetLabel(pUI->GetSrting());
+				pUI->ClearStatusBar();
 			}
 		}
 	}

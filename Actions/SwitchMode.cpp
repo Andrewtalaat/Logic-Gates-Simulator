@@ -19,15 +19,11 @@ void SwitchMode::Execute()
 		if (!pManager->getCompCount())
 		{
 			pUI->PrintMsg("There are no components to simulate.");
-			Sleep(2000);
-			pUI->ClearStatusBar();
 			return;
 		}
 		else if (!CircuitConnected())
 		{
 			pUI->PrintMsg("Cannot start simulation unless all circuits are validly connected.");
-			Sleep(2000);
-			pUI->ClearStatusBar();
 			return;
 		} 
 		else
@@ -36,8 +32,6 @@ void SwitchMode::Execute()
 			pUI->CreateStatusBar();
 			pUI->SetAppMode(SIMULATION);
 			pUI->PrintMsg("Click on a switch to start simulation.");
-			Sleep(2000);
-			pUI->ClearStatusBar();
 		}
 	}
 	else {

@@ -85,9 +85,9 @@ class UI
 
 	MODE AppMode;		//Application Mode (design or simulation)
 	
-	static const int	width = 1600, height = 650,	//Window width and height
-						wx = 15 , wy = 15,			//Window starting coordinates
-						StatusBarHeight = 50,	//Status Bar Height
+	static const int	width = 1600, height = 750,	//Window width and height
+						wx = 0 , wy = 0,			//Window starting coordinates
+						StatusBarHeight = 70,	//Status Bar Height
 						ToolBarHeight = 80,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
 						ToolItemWidth = 60;		//Width of each item in toolbar menu
 
@@ -100,8 +100,8 @@ class UI
 
 	//This should be calculated accurately because it will be used later to create connections between gates
 	//For now, we will assume that rect width = 50 and height = 50
-	static const int	GATE_Width = 50,		//Gate Image default width
-						GATE_Height = 50;		//Gate Image default height
+	static const int	GATE_Width = 80,		//Gate Image default width
+						GATE_Height = 80;		//Gate Image default height
 protected:
 
 	window *pWind;

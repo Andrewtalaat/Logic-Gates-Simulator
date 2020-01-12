@@ -156,8 +156,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		myfile.close();
 		pUI->PrintMsg("Saved successfully!");
-		Sleep(2000);
-		pUI->ClearStatusBar();
 		break;
 	};
 	if(pAct)

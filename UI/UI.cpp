@@ -8,14 +8,14 @@ UI::UI()
 	DrawColor = BLACK;
 	SelectColor = BLUE;
 	ConnColor = RED;
-	MsgColor = BLUE;
+	MsgColor = BLACK;
 	BkGrndColor = WHITE;
 	
 	//Create the drawing window
 	pWind = new window(width, height, wx, wy);	
 
 
-	ChangeTitle("ABD's prototype");
+	ChangeTitle("PHYSICIST's code");
 
 	CreateDesignToolBar();	//Create the desgin toolbar
 	CreateStatusBar();		//Create Status bar
@@ -230,8 +230,8 @@ void UI::PrintMsg(string msg) const
 void UI::ClearStatusBar()const
 {
 	// Set the Message offset from the Status Bar
-	int MsgX = 25;
-	int MsgY = StatusBarHeight - 10;
+	int MsgX = 5;
+	int MsgY = StatusBarHeight - 5;
 
 	//Overwrite using bachground color to erase the message
 	pWind->SetPen(BkGrndColor);
@@ -242,7 +242,7 @@ void UI::ClearStatusBar()const
 //Clears the drawing (degin) area
 void UI::ClearDrawingArea() const
 {
-	pWind->SetPen(RED, 1);
+	pWind->SetPen(RED, 0);
 	pWind->SetBrush(WHITE);
 	pWind->DrawRectangle(0, ToolBarHeight, width, height - StatusBarHeight);
 	
@@ -463,9 +463,9 @@ void UI::DrawConnection(const Point S, const Point D, bool selected) const
 	int y1 = S.y;
 	int y2 = D.y;
 	if (selected)
-		pWind->SetPen(BLACK, 3);
+		pWind->SetPen(BLACK, 5);
 	else
-		pWind->SetPen(RED, 3);
+		pWind->SetPen(RED, 5);
 	if (abs (y2 - y1) < GATE_Height)
 	{
 		if (x1 < x2)
