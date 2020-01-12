@@ -1,7 +1,7 @@
 #include "Simulate.h"
 #include "..\ApplicationManager.h"
 
-Simulate::Simulate(ApplicationManager* pApp) : SELECT(pApp)
+Simulate::Simulate(ApplicationManager* pApp) : Action(pApp)
 {}
 
 Simulate::~Simulate(void)
@@ -16,15 +16,14 @@ void Simulate::Execute()
 	Component** Objects = pManager->getComps();
 	Connection** Connect = pManager->getConns();
 
-	//pUI->PrintMsg("Click on a switch to turn it on/off.");
-
 	//Get THE POINT WHERE THE USER CLICKS
 	pUI->GetLastPoint(x, y);
+	//Calculate the rectangle Corners
+	int gateWidth = pUI->getGateWidth();
+	int gateHeight = pUI->getGateHeight();
 
 	for (int i = pManager->getCompCount() - 1; i > -1; i--) {
-		//Calculate the rectangle Corners
-		int gateWidth = pUI->getGateWidth();
-		int gateHeight = pUI->getGateHeight();
+
 		if (Objects[i] != NULL)
 		{
 			x1 = Objects[i]->getGfxInfo()->PointsList[0].x - 10;
@@ -46,9 +45,12 @@ void Simulate::RunCircuit()
 	Component** Objects = pManager->getComps();
 	for (int i = 0; i < comp; i++)
 	{
-		if (Objects[i]->GetName() == "SWITCH")
+		if (Objects[i] != NULL)
 		{
-			DistributeOutput(Objects[i]);
+			if (Objects[i]->GetName() == "SWITCH")
+			{
+				DistributeOutput(Objects[i]);
+			}
 		}
 	}
 }

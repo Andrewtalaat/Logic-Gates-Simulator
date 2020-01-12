@@ -46,7 +46,7 @@ void Connection::DrawC(UI* pUI)
 			Dest.y = Dest.y + H / 4;
 			break;
 		default:
-			Dest.y = Dy_up + 0.1875 * H + 0.1563 * (int)(InputPin_index);
+			Dest.y = Dy_up + (0.1875 + 0.1563 * (int)(InputPin_index))*H;
 		}
 		pUI->DrawConnection(Src, Dest, selected);
 	}

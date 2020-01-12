@@ -15,7 +15,6 @@ public:
 
 	//Execute action (code depends on action type)
 	virtual void Execute()=0;
-
 	//To undo this action (code depends on action type)
 	virtual void Undo()=0;
 

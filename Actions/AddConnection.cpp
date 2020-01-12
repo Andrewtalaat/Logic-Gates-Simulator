@@ -153,7 +153,6 @@ void AddConnection::Execute()
 		pUI->ClearStatusBar();
 		return;
 	}
-
 	bool InputPinConnected;
 	switch (n) 
 	{

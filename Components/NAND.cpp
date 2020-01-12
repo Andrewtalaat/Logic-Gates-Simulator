@@ -3,7 +3,7 @@
 NAND::NAND(GraphicsInfo* r_pGfxInfo, int r_FanOut) :Gate(r_pGfxInfo, 2, r_FanOut)
 {
 }
-NAND::NAND() {
+NAND::NAND() :Gate(2){
 	
 }
 
