@@ -3,7 +3,7 @@
 
 #include "SELECT.h"
 class Component;
-class Simulate : public SELECT
+class Simulate : public Action
 {
 private:
 	int x, y;	//THE POINT WHERE THE USER CLICKS

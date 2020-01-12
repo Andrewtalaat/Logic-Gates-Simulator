@@ -107,6 +107,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new SwitchMode(this);
 		break;
 	case SIM_MODE:
+		Simulate(this).RunCircuit();
 		pAct = new SwitchMode(this);
 		break;
 	case COPY:
