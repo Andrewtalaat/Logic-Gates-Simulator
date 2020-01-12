@@ -58,9 +58,16 @@ void Paste::Execute()
 		else if (name == "MODULE") {
 			pAct = new AddMODULE(pManager);
 		}
+		else if (name == "SWITCH") {
+			pAct = new AddSWITCH(pManager);
+		}
+		else if (name == "LED") {
+			pAct = new AddLED(pManager);
+		}
+		pAct->Execute();
 	}
-	pAct->Execute();
-	pManager->UpdateInterface();
+	
+	
 }
 
 void Paste::Undo()

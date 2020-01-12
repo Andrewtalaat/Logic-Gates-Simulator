@@ -11,7 +11,6 @@ int main()
 	ApplicationManager AppManager;
 
 
-
 	while (true)
 	{
 		//Read user action
